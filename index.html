@@ -91,7 +91,8 @@
     }
     </style>
 </head>
-<body>
+
+<body onload="getParam() ">
     <!-- 万能收款码展示区域 -->
     <div class="code-item" id="code-all">
         <div class="code-title"></div>
@@ -121,7 +122,7 @@
     
     <script>
     
-window.οnlοad=function getParam() { 
+function getParam() { 
 	var url = location.search; //获取url中"?"符后的字串
  	if (url.indexOf("?") != -1) {
  	var str = url.substr(1);
