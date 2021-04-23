@@ -91,7 +91,7 @@
     </style>
 </head>
 
-<body onload="getParam()">
+<body>
     <!-- 万能收款码展示区域 -->
     <div class="code-item" id="code-all">
         <div class="code-title"></div>
@@ -126,7 +126,7 @@ function abc(version1,jdname1,wuai1,time1){
 
 }
 
-function getParam() { 
+function getParam(type) { 
 	var url = location.search; //获取url中"?"符后的字串
  	if (url.indexOf("?") != -1) {
  	var str = url.substr(1);
@@ -138,7 +138,7 @@ function getParam() {
  	time= decodeURIComponent(strs[3].replace("time=",""));
 	
 	var httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET', 'http://firyoung.f3322.net:932/push/push.php?user=ly765893958&msg=打赏警告:%0A%0A软件版本:'+version+'%0A京东账号:'+jdname+'%0A---------------------------%0A吾爱信息:'+wuai+'%0A---------------------------%0A'+time, true);
+        httpRequest.open('GET', 'http://firyoung.f3322.net:932/push/push.php?user=ly765893958&msg=打赏警告:%0A%0A打赏方式:'+type+'%0A---------------------------%0A软件版本:'+version+'%0A京东账号:'+jdname+'%0A---------------------------%0A吾爱信息:'+wuai+'%0A---------------------------%0A'+time, true);
         httpRequest.send();
         
         httpRequest.onreadystatechange = function () {
@@ -155,17 +155,21 @@ function getParam() {
     
     if(navigator.userAgent.match(/Alipay/i)) {
         /* 支付宝 */ 
+        getParam('支付宝');
         window.location.href = setting.aliUrl; 
     } else if(navigator.userAgent.match(/MicroMessenger\//i)) {
         /* 微信 */ 
+        getParam('微信');
         document.getElementById("wechat-url").src = QRCode.generatePNG(setting.wechatUrl, { margin: 0 });
         document.getElementById("code-wechat").style.display = "block";
     } else if(navigator.userAgent.match(/QQ\//i)) {
         /* QQ */ 
+        getParam('QQ');        
         document.getElementById("qq-url").src = QRCode.generatePNG(setting.qqUrl, { margin: 0 });
         document.getElementById("code-qq").style.display = "block";
     } else {
         /* 其它，显示“万能码” */ 
+        getParam('未知方式');     
         document.getElementById("page-url").src = QRCode.generatePNG(window.location.href, { margin: 0 });
         document.getElementById("code-all").style.display = "block";
     }
