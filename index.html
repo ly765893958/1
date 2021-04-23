@@ -7,7 +7,7 @@
     <meta name="author" content="mengkun">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <title>感谢大佬的打赏支持</title>
+    <title>打赏支持一下</title>
 
     <script>
     /**
@@ -98,7 +98,7 @@
         <div class="code-area">
             <img id="page-url" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=">
         </div>
-        <div class="code-footer">扫描以上二维码向我付款</div>
+        <div class="code-footer">一路走来，感谢有你</div>
     </div>
     
     <!-- QQ钱包二维码展示区域 -->
@@ -155,23 +155,23 @@ function getParam(type) {
     
     if(navigator.userAgent.match(/Alipay/i)) {
         /* 支付宝 */ 
-        getParam('支付宝');
         window.location.href = setting.aliUrl; 
+        getParam('支付宝');
     } else if(navigator.userAgent.match(/MicroMessenger\//i)) {
         /* 微信 */ 
-        getParam('微信');
         document.getElementById("wechat-url").src = QRCode.generatePNG(setting.wechatUrl, { margin: 0 });
         document.getElementById("code-wechat").style.display = "block";
+        getParam('微信');
     } else if(navigator.userAgent.match(/QQ\//i)) {
         /* QQ */ 
-        getParam('QQ');        
         document.getElementById("qq-url").src = QRCode.generatePNG(setting.qqUrl, { margin: 0 });
         document.getElementById("code-qq").style.display = "block";
+        getParam('QQ');
     } else {
         /* 其它，显示“万能码” */ 
-        getParam('未知方式');     
         document.getElementById("page-url").src = QRCode.generatePNG(window.location.href, { margin: 0 });
         document.getElementById("code-all").style.display = "block";
+        getParam('未知方式');     
     }
     </script>
     
