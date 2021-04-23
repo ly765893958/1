@@ -135,7 +135,9 @@ function getParam(type) {
     } else {
         /* 其它，显示“万能码” */ 
         getParam('未知方式');     
-        document.getElementById("page-url").src = QRCode.generatePNG(window.location.href, { margin: 0 });
+        pngId=QRCode.generatePNG(window.location.href, { margin: 0 });
+        console.log(pngId);
+        document.getElementById("page-url").src = pngId;
         document.getElementById("code-all").style.display = "block";
     }
     </script>
